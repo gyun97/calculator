@@ -12,8 +12,15 @@ import java.util.List;
 
 public class Calculator{
 
+
     // private으로 접근 제한자 변경하여 캡슐화 (LV 2 요구 사항 3)
     private List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 컬렉션 타입 필드 (LV 2 요구 사항 1)
+
+    // Calculator 인스턴스를 생성(new)할 때 생성자를 통해 연산 결과를 저장하고 있는 컬렉션 필드가 초기화 (LV 2 요구 사항 6)
+    public Calculator() {
+        this.resultList = new ArrayList<>();
+    }
+
 
     // Getter로 resultList 접근하게 캡슐화 (LV 2 요구 사항 3)
     public List<Integer> getResultList() {
