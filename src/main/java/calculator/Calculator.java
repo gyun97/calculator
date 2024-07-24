@@ -8,8 +8,9 @@ import java.util.List;
 public class Calculator{
 
 
-    List<Integer> resultList = new ArrayList<>();
+    List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 컬렉션 타입 필드 (LV 2 요구 사항 1)
 
+    /*양의 정수 2개(0 포함)와 연산 기호를 매개변수로 받아 사칙연산(+,-,*,/) 기능을 수행한 후 결과 값을 반환하는 메서드(Lv 2 요구사항 1) */
     public Integer calculate(int num1, int num2, char operator) throws MyArithmeticException {
 
         switch (operator) {
@@ -24,12 +25,12 @@ public class Calculator{
 
             case '/':
                 if (num2 == 0) {
-                    // 분모가 0이 들어온 경우 ArithmeticException 에러 발생
+                    // 나눗셈에 분모가 0이 들어온 경우 MyArithmeticException 에러 발생 (Lv2 요구 사항 1)
                     throw new MyArithmeticException("나눗셈 연산에서 분모(두번째 파라미터)에 0이 입력될 수 없습니다.");
                 }
                 return num1 / num2;
 
-            default: // 잘못된 사칙 연산 기호가 들어온 경우 경우 ArithmeticException 에러 발생
+            default: // 잘못된 사칙 연산 기호가 들어온 경우 경우 ArithmeticException 에러 발생 (Lv2 요구 사항 1)
                 throw new MyArithmeticException("올바른 사칙 연산 기호(+, -, *, /)를 입력해 주세요!");
         } // switch문 종료
 

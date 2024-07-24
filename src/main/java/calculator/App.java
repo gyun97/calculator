@@ -12,14 +12,10 @@ public class App {
 
     public static void main(String[] args) throws MyArithmeticException {
 
-//        Calculator cal = new Calculator(); // Calculator 인스턴스 생성 (LV 2 요구 사항 2)
+        Calculator cal = new Calculator(); // Calculator 인스턴스 생성 (LV 2 요구 사항 2)
 
         Scanner sc = new Scanner(System.in);
 
-//        int[] resultArray = new int[10]; // 연산 결과 10개까지 저장할 수 있는 배열 생성(LV 1 요구사항 5 ~ 6)
-//        int index = 0; // 배열에 저장된 연산 결과 카운트
-
-        ArrayList<Integer> resultList = new ArrayList<>(); // 결과를 무한대로 저장할 수 있는 리스트 생성 (LV 1 요구 사항 7)
 
         while (true) { // 결과 도출 후 진행 여부 응답에서 exit 입력 시 계산 종료, exit 아니면 계속 계산 반복(LV 1 요구 사항 4)
 
@@ -37,33 +33,8 @@ public class App {
 //        System.out.println("operator = " + operator);// 사칙 연산 기호 입력(LV 1 요구 사항 2)
 
 
-//            cal.calculate(num1, num2, operator); // 연산 수행 결과는 이제 Calculator 클래스의 calculate 메서드가 실행(LV 2 요구 사항 2)
-
-
-//            int result = 0;
-//
-//            /* swtich 제어문으로 입력받은 식의 사칙연산을 진행하여 결과값 도출(LV 1 요구 사항 3) */
-//            switch (operator) {
-//                case '+':
-//                    result = num1 + num2;
-//                    System.out.println("결과: " + result);
-//                    break;
-//                case '-':
-//                    result = num1 - num2;
-//                    System.out.println("결과: " + result);
-//                    break;
-//                case '*':
-//                    result = num1 * num2;
-//                    System.out.println("결과: " + result);
-//                    break;
-//                case '/':
-//                    if (num2 == 0) System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-//                    result = num1 / num2;
-//                    System.out.println("결과:" + result);
-//                    break;
-//                default:
-//                    System.out.println("올바른 사칙 연산 기호(+, -, *, /)를 입력해 주세요!");
-//            } // switch문 종료
+            Integer result = cal.calculate(num1, num2, operator);// 연산 수행 결과는 이제 Calculator 클래스의 calculate 메서드가 실행(LV 2 요구 사항 2)
+            cal.resultList.add(result); // 연산 결과 Calculator 클래스의 연산 결과를 저장하는 필드에 저장 (LV 2 요구 사항 2)
 
 
 //            resultList.add(result);
@@ -71,7 +42,7 @@ public class App {
             String removeResult = sc.next();
 
             if (removeResult.equals("remove")) { // (LV 1 요구 사항 7)
-                resultList.remove(0);
+                cal.resultList.remove(0);
                 System.out.println("가장 먼저 저장된 연산 결과 삭제 완료!");
             }
 
@@ -81,29 +52,11 @@ public class App {
 //            System.out.println("리스트: " + resultList.toString());
                 System.out.println("리스트를 조회합니다.");
                 System.out.print("리스트: ");
-                for (int num : resultList) {
+                for (int num : cal.resultList) {
                     System.out.print(num + " ");
 
                 }
             }
-
-
-            // 계산 결과를 배열에 저장합니다. (LV 1 요구 사항 5 ~ 6)
-            /* 만약  배열의 크기가 10을 초과할 시 그 다음부터는 else문이 실행*/
-//            if (index < 10) {
-//                resultArray[index] = result;
-//                index++;
-//            } else { // 배열에 저장된 result의 수가 10개 초과시 (LV 1 요구 사항 6)
-//                System.out.println("배열이 10개를 초과하여 가장 먼저 저장된 값이 삭제됩니다.");
-
-//                /*배열을 반복문으로 순회하여 앞 인덱스 자리에 바로 뒤 인덱스의 값을 대입하여 원소들을 하나씩 앞당긴 후 마지막 자리에 새로운 result 추가*/
-//                for (int i = 0; i < resultArray.length - 1; i++) {
-//                    resultArray[i] = resultArray[i + 1]; // 배열 원소들 한 칸씩 앞당기기
-//                }
-//                resultArray[9] = result;  // 배열 가장 마지막 칸에 새 result 추가
-//            }
-
-//            System.out.println(Arrays.toString(resultArray)); // 배열 결과 확인
 
 
             System.out.println();
