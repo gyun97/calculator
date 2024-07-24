@@ -16,6 +16,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
+        List<Integer> calResultList = cal.getResultList(); // Getter로 Calculator의 리스트에 접근 (LV 2 요구사항 3)
+
 
         while (true) { // 결과 도출 후 진행 여부 응답에서 exit 입력 시 계산 종료, exit 아니면 계속 계산 반복(LV 1 요구 사항 4)
 
@@ -34,7 +36,7 @@ public class App {
 
 
             Integer result = cal.calculate(num1, num2, operator);// 연산 수행 결과는 이제 Calculator 클래스의 calculate 메서드가 실행(LV 2 요구 사항 2)
-            cal.resultList.add(result); // 연산 결과 Calculator 클래스의 연산 결과를 저장하는 필드에 저장 (LV 2 요구 사항 2)
+            calResultList.add(result); // 연산 결과 Calculator 클래스의 연산 결과를 저장하는 필드에 저장 (LV 2 요구 사항 2)
 
 
 //            resultList.add(result);
@@ -42,7 +44,10 @@ public class App {
             String removeResult = sc.next();
 
             if (removeResult.equals("remove")) { // (LV 1 요구 사항 7)
-                cal.resultList.remove(0);
+//                cal.resultList.remove(0);
+                calResultList.remove(0);
+                cal.setResultList(calResultList); // Setter로 Calculator의 리스트 수정(LV 2 요구사항 3)
+                cal.setResultList(cal.getResultList());
                 System.out.println("가장 먼저 저장된 연산 결과 삭제 완료!");
             }
 
@@ -52,7 +57,9 @@ public class App {
 //            System.out.println("리스트: " + resultList.toString());
                 System.out.println("리스트를 조회합니다.");
                 System.out.print("리스트: ");
-                for (int num : cal.resultList) {
+
+                 // Getter로 Calculator의 리스트에 접근하여 값 조회(LV 2 요구 사항 3)
+                for (int num : calResultList) {
                     System.out.print(num + " ");
 
                 }
