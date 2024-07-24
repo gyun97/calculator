@@ -59,10 +59,11 @@ public class App {
                 System.out.print("리스트: ");
 
                  // Getter로 Calculator의 리스트에 접근하여 값 조회(LV 2 요구 사항 3)
-                for (int num : calResultList) {
-                    System.out.print(num + " ");
-
-                }
+//                for (int num : calResultList) {
+//                    System.out.print(num + " ");
+//
+//                }
+                cal.inquiryResults(); /* 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 5) */
             }
 
 

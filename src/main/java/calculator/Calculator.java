@@ -51,9 +51,14 @@ public class Calculator{
 
     }
 
-    /*// 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4) */
+    /* 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4) */
     public void removeResult() {
         resultList.remove(0);
+    }
+
+    /* 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 5) */
+    public void inquiryResults() {
+        System.out.println(getResultList());
     }
 
 
