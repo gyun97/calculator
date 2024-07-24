@@ -45,9 +45,9 @@ public class App {
 
             if (removeResult.equals("remove")) { // (LV 1 요구 사항 7)
 //                cal.resultList.remove(0);
-                calResultList.remove(0);
-                cal.setResultList(calResultList); // Setter로 Calculator의 리스트 수정(LV 2 요구사항 3)
-                cal.setResultList(cal.getResultList());
+//                calResultList.remove(0);
+//                cal.setResultList(calResultList); // Setter로 Calculator의 리스트 수정(LV 2 요구사항 3)
+                cal.removeResult(); // 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4)
                 System.out.println("가장 먼저 저장된 연산 결과 삭제 완료!");
             }
 

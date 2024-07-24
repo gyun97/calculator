@@ -5,8 +5,12 @@ import error.MyArithmeticException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculator{
+/**
+ * LV 2 계산기에서 계산 수행 및 계산 결과 저장 담당 클래스
+ */
 
+
+public class Calculator{
 
     // private으로 접근 제한자 변경하여 캡슐화 (LV 2 요구 사항 3)
     private List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 컬렉션 타입 필드 (LV 2 요구 사항 1)
@@ -45,6 +49,11 @@ public class Calculator{
                 throw new MyArithmeticException("올바른 사칙 연산 기호(+, -, *, /)를 입력해 주세요!");
         } // switch문 종료
 
+    }
+
+    /*// 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4) */
+    public void removeResult() {
+        resultList.remove(0);
     }
 
 
