@@ -66,7 +66,18 @@ public class App {
                 resultList.remove(0);
                 System.out.println("가장 먼저 저장된 연산 결과 삭제 완료!");
             }
-            System.out.println("리스트: " + resultList.toString());
+
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회): ");
+            String inquiryResult = sc.next();
+            if (inquiryResult.equals("inquiry")) {
+//            System.out.println("리스트: " + resultList.toString());
+                System.out.println("리스트를 조회합니다.");
+                System.out.print("리스트: ");
+                for (int num : resultList) {
+                    System.out.print(num + " ");
+
+                }
+            }
 
 
             /* 계산 결과를 배열에 저장합니다. 만약  배열의 크기가 10을 초과할 시 그 다음부터는 else문이 실행*/
@@ -85,6 +96,7 @@ public class App {
 //            System.out.println(Arrays.toString(resultArray)); // 배열 결과 확인
 
 
+            System.out.println();
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
             String exit = sc.next(); // 진행 여부 의사 질문
 
