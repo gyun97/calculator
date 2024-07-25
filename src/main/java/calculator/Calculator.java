@@ -17,9 +17,17 @@ public abstract class Calculator {
     */
     public static final double PI = 3.14;
 
-    public static List<Double> circleResultList = new ArrayList<>() ; // 원 넓이 계산 결과 저장할 컬렉션 타입 필드 (LV 2 요구 사항 7)
 
-    public static List<Double> getCircleResultList() { // 원 넓이 저장 리스트 Getter 캡슐화(LV 2 요구 사항 7)
+    // Calculator 인스턴스를 생성(new)할 때 생성자를 통해 사칙 연산 결과를 저장하고 있는 컬렉션 필드가 초기화 (LV 2 요구 사항 6)
+    // Calculator 인스턴스를 생성(new)할 때 생성자를 통해 원 넓이 연산 결과를 저장하고 있는 컬렉션 필드가 초기화 (LV 2 요구 사항 7)
+    public Calculator() {
+        this.resultList = new ArrayList<>();
+        this.circleResultList = new ArrayList<>();
+    }
+
+    public List<Double> circleResultList = new ArrayList<>() ; // 원 넓이 계산 결과 저장할 컬렉션 타입 필드 (LV 2 요구 사항 7)
+
+    public List<Double> getCircleResultList() { // 원 넓이 저장 리스트 Getter 캡슐화(LV 2 요구 사항 7)
         return circleResultList;
     }
 
@@ -31,12 +39,6 @@ public abstract class Calculator {
     public static List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 컬렉션 타입 필드 (LV 2 요구 사항 1)
 
 
-    // Calculator 인스턴스를 생성(new)할 때 생성자를 통해 사칙 연산 결과를 저장하고 있는 컬렉션 필드가 초기화 (LV 2 요구 사항 6)
-    // Calculator 인스턴스를 생성(new)할 때 생성자를 통해 원 넓이 연산 결과를 저장하고 있는 컬렉션 필드가 초기화 (LV 2 요구 사항 7)
-    public Calculator() {
-        this.resultList = new ArrayList<>();
-        this.circleResultList = new ArrayList<>();
-    }
 
     // Getter로 resultList 접근하게 캡슐화 (LV 2 요구 사항 3)
     public static List<Integer> getResultList() {
@@ -58,11 +60,11 @@ public abstract class Calculator {
     }
 
     /* 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 5) */
-    public void inquiryResults(List<Integer> resultList) {
+    public void inquiryResults() {
         System.out.println(getResultList());
     }
 
-    public void saveResult(List<Integer> resultList, Integer result) {
+    public void saveResult(Integer result) {
         resultList.add(result);
     }
 
@@ -72,11 +74,11 @@ public abstract class Calculator {
     abstract Double calculateCircleArea(double radius);
 
 
-    public void inquiryCircleResults(List<Double> circleResultList) {
+    public void inquiryCircleResults() {
         System.out.println(getCircleResultList());
     }
 
-    public void saveCircleResults(List<Double> circleResultList, Double circleResult) {
+    public void saveCircleResults(Double circleResult) {
         circleResultList.add(circleResult);
     }
 
