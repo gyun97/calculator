@@ -39,7 +39,6 @@ public abstract class Calculator {
     public static List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 컬렉션 타입 필드 (LV 2 요구 사항 1)
 
 
-
     // Getter로 resultList 접근하게 캡슐화 (LV 2 요구 사항 3)
     public static List<Integer> getResultList() {
         return resultList;
@@ -51,7 +50,7 @@ public abstract class Calculator {
     }
 
     /*양의 정수 2개(0 포함)와 연산 기호를 매개변수로 받아 사칙연산(+,-,*,/) 기능을 수행한 후 결과 값을 반환하는 메서드(Lv 2 요구사항 1) */
-    abstract Integer calculate(int num1, int num2, char operator) throws MyArithmeticException;
+    abstract Integer calculate(int num1, int num2, char operator) ;
 
 
     /* 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4) */

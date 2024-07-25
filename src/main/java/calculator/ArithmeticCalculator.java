@@ -12,33 +12,44 @@ import javax.swing.*;
 
 public class ArithmeticCalculator extends Calculator {
 
-    AddOperator addOperator;
-    SubtractOperator subtractOperator;
-    MultiplyOperator multiplyOperator;
-    DivideOperator divideOperator;
+
+    Operator operator; // 인터페이스로 OCP 구현 (LV 2 요구 사항 10)
+
+    /* 사칙 연산 기능 분산으로 SRP 구현( LV 2 요구 사항 9)*/
+//    AddOperator addOperator;
+//    SubtractOperator subtractOperator;
+//    MultiplyOperator multiplyOperator;
+//    DivideOperator divideOperator;
 
 
     @Override
-    public Integer calculate(int num1, int num2, char operator) throws MyArithmeticException {
+    public Integer calculate(int num1, int num2, char operator) {
 
 
         // 잘못된 사칙 연산 기호가 들어온 경우 경우 ArithmeticException 에러 발생 (Lv2 요구 사항 1)
+        // 사칙 연산 역할 각 연산 클래스로 역할 분할(LV 2 요구 사항 9)
         return switch (operator) {
             case '+' -> {
                 AddOperator addOperator = new AddOperator();
-                yield addOperator.operate(num1, num2);
+                yield addOperator.operate(num1, num2, operator);
             }
             case '-' -> {
                 SubtractOperator subtractOperator = new SubtractOperator();
-                yield subtractOperator.operate(num1, num2);
+                yield subtractOperator.operate(num1, num2, operator);
             }
             case '*' -> {
                 MultiplyOperator multiplyOperator = new MultiplyOperator();
-                yield multiplyOperator.operate(num1, num2);
+                yield multiplyOperator.operate(num1, num2, operator);
             }
             case '/' -> {
                 DivideOperator divideOperator = new DivideOperator();
-                yield divideOperator.operate(num1, num2);
+                yield divideOperator.operate(num1, num2, operator);
+            }
+
+            // LV 2 요구 사항 10
+            case '%' -> {
+                ModOperator modOperator = new ModOperator();
+                yield modOperator.operate(num1, num2, operator);
             }
             // 나눗셈에 분모가 0이 들어온 경우 MyArithmeticException 에러 발생 (Lv2 요구 사항 1)
             default -> throw new MyArithmeticException("올바른 사칙 연산 기호(+, -, *, /)를 입력해 주세요!");

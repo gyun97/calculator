@@ -19,7 +19,7 @@
 //
 //
 //
-//    public static void main(String[] args) throws MyArithmeticException {
+//    public static void main(String[] args)  {
 //
 //
 //        Scanner sc = new Scanner(System.in);
@@ -146,7 +146,7 @@ public class App {
         this.calculator = calculator;
     }
 
-    public static void main(String[] args) throws MyArithmeticException {
+    public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
 
         // 초기 Calculator 객체 생성
