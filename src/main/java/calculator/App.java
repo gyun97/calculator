@@ -10,29 +10,43 @@ import java.util.stream.Collectors;
 
 public class App {
 
+    private static Calculator calculator;
+
+
+    public App(Calculator calculator) {
+        this.calculator = calculator;
+    }
+
+
+
     public static void main(String[] args) throws MyArithmeticException {
 
-        Calculator cal = new Calculator(); // Calculator 인스턴스 생성 (LV 2 요구 사항 2)
 
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> calResultList = cal.getResultList(); // Getter로 Calculator의 사칙 연산 리스트에 접근 (LV 2 요구사항 3)
-        List<Double> circleResultList = cal.getCircleResultList(); // Getter로 Calculator의 원넓이 리스트에 접근 (LV 2 요구사항 7)
+//        List<Integer> calResultList = calculator.getResultList(); // Getter로 Calculator의 사칙 연산 리스트에 접근 (LV 2 요구사항 3)
 
 
         while (true) { // 결과 도출 후 진행 여부 응답에서 exit 입력 시 계산 종료, exit 아니면 계속 계산 반복(LV 1 요구 사항 4)
 
             System.out.print("원의 넓이를 구하고 싶으면 \'circle\'를, 두 수의 사칙 연산을 하고 싶으면 \'four\'를 입력하세요: "); // LV 2요구 사항 7
+//            List<Double> circleResultList = Calculator.getCircleResultList(); // Getter로 Calculator의 원넓이 리스트에 접근 (LV 2 요구사항 7)
+//            List<Integer> resultList = Calculator.getResultList(); // Getter로 Calculator의 원넓이 리스트에 접근 (LV 2 요구사항 7)
             String choice = sc.next();
 
             if (choice.equals("circle")) {
+                App app = new App(new CircleCalculator());
+
                 System.out.println("원의 넓이를 구하는 것을 선택하셨습니다.");
                 System.out.print("구하고 싶은 원의 반지름(cm)을 입력하세요: ");
                 double radius  = sc.nextDouble();
-                Double circleArea = cal.calculateCircleArea(radius);
-                circleResultList.add(circleArea);
+                Double circleArea = App.calculator.calculateCircleArea(radius);
+                System.out.println("원의 넓이 결과: " + circleArea);
+                calculator.saveCircleResults(Calculator.circleResultList, circleArea);
 
             } else if (choice.equals("four")) {
+                App app = new App(new ArithmeticCalculator());
+
                 System.out.println("두 수의 사칙 연산을 구하는 것을 선택하셨습니다.");
                 System.out.print("첫 번째 숫자를 입력하세요:");
                 int num1 = sc.nextInt(); // 첫 번째 숫자 입력(LV 1 요구 사항 1)
@@ -48,8 +62,10 @@ public class App {
 //        System.out.println("operator = " + operator);// 사칙 연산 기호 입력(LV 1 요구 사항 2)
 
 
-                Integer result = cal.calculate(num1, num2, operator);// 연산 수행 결과는 이제 Calculator 클래스의 calculate 메서드가 실행(LV 2 요구 사항 2)
-                calResultList.add(result); // 연산 결과 Calculator 클래스의 연산 결과를 저장하는 필드에 저장 (LV 2 요구 사항 2)
+                Integer result = calculator.calculate(num1, num2, operator);// 연산 수행 결과는 이제 Calculator 클래스의 calculate 메서드가 실행(LV 2 요구 사항 2)
+                System.out.println("사칙 연산 결과: " + result);
+//                calResultList.add(result); // 연산 결과 Calculator 클래스의 연산 결과를 저장하는 필드에 저장 (LV 2 요구 사항 2)
+                calculator.saveResult(Calculator.resultList, result);
             } // 사칙 연산 (else문) 끝
 
             else {
@@ -66,11 +82,11 @@ public class App {
 //                cal.resultList.remove(0);
 //                calResultList.remove(0);
 //                cal.setResultList(calResultList); // Setter로 Calculator의 리스트 수정(LV 2 요구사항 3)
-                    cal.removeResult(); // 사칙 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4)
+                    calculator.removeResult(); // 사칙 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 4)
                     System.out.println("가장 먼저 저장된 사칙 연산 결과 삭제 완료!");
                 }
                 else if (choice.equals("circle")){
-                    cal.removeCircleResults(); // 원 넓이 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 7)
+                    calculator.removeCircleResults(); // 원 넓이 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드 구현 (LV 2 요구사항 7)
                     System.out.println("가장 먼저 저장된 원 넓이 연산 결과 삭제 완료!");
                 }
             }
@@ -88,13 +104,13 @@ public class App {
 //                    System.out.print(num + " ");
 //
 //                }
-                    cal.inquiryResults(); /* 사칙 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 5) */
+                    calculator.inquiryResults(Calculator.resultList); /* 사칙 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 5) */
                 }
 
                 else if (choice.equals("circle")){
                     System.out.println("원 넓이 연산의 결과 리스트를 조회합니다.");
                     System.out.print("원 넓이 결과 리스트: ");
-                    cal.inquiryCircleResults(); /* 원 넓이 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 7) */
+                    calculator.inquiryCircleResults(Calculator.circleResultList); /* 원 넓이 연산 결과들을 조회하는 기능 메서드를 구현 (LV 2 요구사항 7) */
 
                 }
 
