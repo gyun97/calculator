@@ -28,26 +28,27 @@ public class ArithmeticCalculator extends Calculator {
 
         // 잘못된 사칙 연산 기호가 들어온 경우 경우 ArithmeticException 에러 발생 (Lv2 요구 사항 1)
         // 사칙 연산 역할 각 연산 클래스로 역할 분할(LV 2 요구 사항 9)
-        return switch (operator) {
-            case '+' -> {
+        OperatorType operatorType = OperatorType.fromSymbol(operator);
+        return switch (operatorType) {
+            case ADDITION -> {
                 AddOperator addOperator = new AddOperator();
                 yield addOperator.operate(num1, num2, operator);
             }
-            case '-' -> {
+            case SUBTRACTION -> {
                 SubtractOperator subtractOperator = new SubtractOperator();
                 yield subtractOperator.operate(num1, num2, operator);
             }
-            case '*' -> {
+            case MULTIPLICATION -> {
                 MultiplyOperator multiplyOperator = new MultiplyOperator();
                 yield multiplyOperator.operate(num1, num2, operator);
             }
-            case '/' -> {
+            case DIVISION -> {
                 DivideOperator divideOperator = new DivideOperator();
                 yield divideOperator.operate(num1, num2, operator);
             }
 
             // LV 2 요구 사항 10
-            case '%' -> {
+            case MODULO -> {
                 ModOperator modOperator = new ModOperator();
                 yield modOperator.operate(num1, num2, operator);
             }
